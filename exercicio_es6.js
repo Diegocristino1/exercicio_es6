@@ -1,47 +1,33 @@
 const alunos = [
-    {nome: "joão", note: 7.3, bolsista: false},
-    {nome: "Maria", note: 9.2, bolsista: true},
-    {nome: "Pedro", note: 6.5, bolsista: false},
-    {nome: "Ana", note: 7.1, bolsista: true},
-    {nome: "Guilherme", note: 6.1, bolsista: false},
-    {nome: "Alvin", note: 5.9, bolsista: false},
-    {nome: "Eduardo", note: 9.0, bolsista: true},
-    {nome: "Nathan", note: 5.5, bolsista: false},
+    {nome: "joão", nota: 7.3, bolsista: falso},
+    {nome: "Maria", nota: 9.2, bolsista: verdadeiro},
+    {nome: "Pedro", nota: 6.5, bolsista: falso},
+    {nome: "Ana", nota: 7.1, bolsista: verdadeiro},
+    {nome: "Guilherme", nota: 6.1, bolsista: falso},
+    {nome: "Alvin", nota: 5.9, bolsista: falso},
+    {nome: "Eduardo", nota: 9.0, bolsista: verdadeiro},
+    {nome: "Nathan", nota: 5.5, bolsista: falso},
 ];
-const alunosAprovados = () => alunos.filter(aluno => aluno.nota >= 6);
+const filtrarAlunos = (critério) => alunos.filter(critério);
 
-const alunosReprovados = () => alunos.filter(aluno => aluno.nota < 6);
+const exibirResultado = () => {
+    const aprovados = filtrarAlunos(aluno => aluno.grade >= 6);
 
-const alunosBolsistas = () => alunos.filter(aluno => aluno.bolsista);
+    const reprovados = filtrarAlunos(aluno => aluno.nota < 6);
 
-const alunosNaoBolsistas = () => alunos.filter(aluno => !aluno.bolsista);
+    const bolsista = filtrarAlunos(aluno => aluno.bolsista);
+    const naoBolsista = filtrarAlunos(aluno => !aluno.bolsista);
 
-const exibiResultado = () => {
-    const aprovados = alunosAprovados();
-    const reprovados = alunosReprovados();
-    const bolsista = alunosBolsistas();
-    const NaoBolsistas = alunosNaoBolsistas();
+    const imprimir = (título, lista) => {
+        console.log(`\n${título}:`);
+        lista.forEach(aluno => console.log(`${aluno.nome}: Nota${aluno.grade}`));
+    };
 
-    console.log("Aprovados:");
-    aprovados.forEach(aluno => {
-        console.log("${aluno.nome}: Aprovado com nota ${aluno.nota}");
-    });
+    imprimir("Aprovados", aprovados);
+    imprimir("Reprovados", reprovados);
+    imprimir("Bolsista", bolsista);
+    imprimir("Não Bolsista", naoBolsista);
+};
 
-    console.log("\nReprovado:");
-    reprovados.forEach(aluno => {
-        console.log("${aluno.nome}: É bolsista");
-    });
-
-    console.log("\nBolsista:");
-    bolsista.forEach(aluno => {
-        console.log("${aluno.nome:} Não é bolsista");
-    });
-
-    console.log("\nNão Bolsista:");
-    NaoBolsistas.forEach(aluno => {
-        console.log("${aluno.nome}: Não é bolsista");
-    });
-}
-
-exibiResultado();
+exibirResultado();
 
